@@ -2,7 +2,7 @@
 # Stage 1: Build the React Client
 # ==========================================
 FROM node:lts-alpine AS client-build
-WORKDIR /usr/src/app
+WORKDIR /opt/Nodejs/Network-Hub
 
 # Copy client package files and install dependencies
 # We copy only package files first to leverage Docker cache
@@ -19,7 +19,7 @@ RUN cd client && npm run build
 # Stage 2: Production Server
 # ==========================================
 FROM node:lts-alpine
-WORKDIR /usr/src/app
+WORKDIR /opt/Nodejs/Network-Hub
 
 # Copy server package files and install production dependencies
 COPY server/package*.json ./server/
@@ -30,7 +30,7 @@ COPY server/ ./server/
 
 # Copy Built Client Assets from the Builder Stage
 # We maintain the ../client/dist structure expected by server.js
-COPY --from=client-build /usr/src/app/client/dist ./client/dist
+COPY --from=client-build /opt/Nodejs/Network-Hub/client/dist ./client/dist
 
 # Expose the API Port
 EXPOSE 8000
