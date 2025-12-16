@@ -1,0 +1,19 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+README.md
+
+# Ignore dependencies and builds to ensure clean docker build
+client/node_modules
+client/dist
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+server/node_modules
+server/logs
+*.log
